@@ -30,7 +30,7 @@ const thoughtSchema = new Schema(
         },
         id: false,
     }
-);
+);it 
 
 thoughtSchema.virtual('reactionCount').get(function(){
     return this.reactions.length;
