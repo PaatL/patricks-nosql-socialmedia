@@ -4,7 +4,7 @@ module.exports = {
   async createUser(req, res) {
     try {
       const newUser = await User.create(req.body);
-      res.status(200).json(newUser);
+      res.json(newUser);
     } catch (error) {
       res.status(500).json(error);
     }
@@ -19,13 +19,18 @@ module.exports = {
   },
   async getSingleUser(req, res) {
     try {
-      const userData = await User.findOne({ _id: req.params.userID })
-        .select('-__v');
+      const userData = await User.findOne({ id: req.params.userID })
+        .select('-__v').lean();
       if (!userData) {
+        
         return res.status(404).json({ message: 'No user with that ID' });
       }
-      res.json(userData);
+      // res.json({
+      //   userData, 
+      //   thoughts: await thoughts(req.params.userId),
+      // });
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   },
