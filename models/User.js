@@ -17,7 +17,7 @@
         thoughts: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Thought',
+                ref: 'thought',
             },
         ],
         friends: [
